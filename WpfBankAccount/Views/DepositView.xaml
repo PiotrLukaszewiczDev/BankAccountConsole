@@ -1,0 +1,114 @@
+﻿<UserControl x:Class="WpfBankAccount.Views.DepositView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfBankAccount.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    </UserControl.Resources>
+    
+    <Grid Margin="20">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Grid.Column="2"
+                   Text="Deposit"
+                   FontSize="24"
+                   FontWeight="Bold"
+                   Grid.ColumnSpan="3"/>
+
+        <!--Owner-->
+        <TextBlock Grid.Row="1" 
+                   Grid.Column="0"
+                   Text="Owner:"
+                   FontWeight="Bold"/>
+
+
+        <TextBlock Grid.Row="1"
+                   Grid.Column="1"
+                   Text="{Binding OwnerName}"/>
+
+        <!--Account number-->
+        <TextBlock Grid.Row="2" 
+                   Grid.Column="0"
+                   Text="Account Number: "
+                   FontWeight="Bold"/>
+
+        <TextBlock Grid.Row="2" 
+                   Grid.Column="1"
+                   Text="{Binding AccountNumber}"/>
+
+
+        <!--Balance-->
+        <TextBlock Grid.Row="3"
+                   Grid.Column="0"
+                   Text="Balance"
+                   FontWeight="Bold"/>
+
+        <TextBlock Grid.Row="3"
+                   Grid.Column="1"
+                   Text="{Binding Balance}"
+                   FontSize="16"
+                   FontWeight="Bold"/>
+
+        <!--Deposit-->
+        <TextBlock Grid.Row="4"
+                   Grid.Column="0"
+                   Text="Deposit"
+                   FontWeight="Bold"/>
+
+        <TextBox Grid.Row="4"
+                 Grid.Column="1"
+                 Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged}"
+                 FontSize="16"
+                 FontWeight="Bold"/>
+        
+        <!--Deposit button-->
+        <Button Grid.Row="4"
+                Grid.Column="2"
+                Content="Deposit"
+                Width="100"
+                HorizontalAlignment="Center"
+                Command="{Binding DepositCommand}">
+        </Button>
+        
+        <!--Error messsage-->
+        <!--Chce aby to pole nie było widoczne gdy nie jest potrzebne. Visibility binding-->
+        <TextBlock Visibility ="{Binding HasError, Converter={StaticResource BoolToVis}}" 
+                   Grid.Row="5"
+                   Grid.Column="2"
+                   Text="{Binding ErrorMessage}"
+                   Foreground="Red"
+                   FontWeight="Bold"/>
+
+        <!--Back button-->
+        <Button Grid.Row="6"
+                Grid.Column="2"
+                Content="Back"
+                Width="100"
+                HorizontalAlignment="Center"
+                Command="{Binding BackCommand}"/>
+
+
+    </Grid>
+</UserControl>

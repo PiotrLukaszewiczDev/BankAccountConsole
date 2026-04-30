@@ -1,4 +1,5 @@
-﻿using BankAccountUWP.Views;
+﻿using BankAccountLibrary.Services;
+using BankAccountUWP.Views;
 using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -17,10 +18,11 @@ namespace BankAccountUWP
         /// Initializes the singleton application object. This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
+        public AuthService AuthService { get; }
         public App()
         {
             InitializeComponent();
-
+            AuthService = new AuthService();
             Suspending += OnSuspending;
         }
 
@@ -29,19 +31,27 @@ namespace BankAccountUWP
         {
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active.
-            if (Window.Current.Content is not Frame rootFrame)
+
+            Frame rootFrame = Window.Current.Content as Frame;
+
+            if (rootFrame == null)
             {
                 // Create a Frame to act as the navigation context and navigate to the first page
                 rootFrame = new Frame();
                 rootFrame.NavigationFailed += OnNavigationFailed;
+                Window.Current.Content = rootFrame;
 
-                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
+                if (e.PrelaunchActivated == false)
                 {
+                    if (rootFrame.Content == null)
+                    {
+                        rootFrame.Navigate(typeof(MainMenuPage), e.Arguments);
+                    }
+                    Window.Current.Activate();
                     // TODO: Load state from previously suspended application
                 }
 
-                // Place the frame in the current Window
-                Window.Current.Content = rootFrame;
+                // Place the frame in the current Window - usunąłem
             }
 
             if (e.PrelaunchActivated == false)
@@ -77,7 +87,7 @@ namespace BankAccountUWP
         /// <param name="e">Details about the suspend request.</param>
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
-            SuspendingDeferral deferral = e.SuspendingOperation.GetDeferral();
+            var deferral = e.SuspendingOperation.GetDeferral();
 
             // TODO: Save application state and stop any background activity
             deferral.Complete();

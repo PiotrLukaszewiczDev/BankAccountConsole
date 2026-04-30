@@ -13,14 +13,14 @@
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Width="300" Spacing="12">
             <TextBlock Text="Login" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center"/>
-            <TextBox PlaceholderText="User name" x:Name="UsernameTextBox" Text="{Binding Username}"/>
-            <PasswordBox PlaceholderText="Password" x:Name="PasswordBox" Password="{Binding Password}"/>
+            <TextBox PlaceholderText="Username" x:Name="UsernameTextBox" Text="{Binding Username, Mode=TwoWay}"/>
+            <PasswordBox PlaceholderText="Password" x:Name="PasswordBox" PasswordChanged="PasswordBox_PasswordChanged"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,12,0,0" Spacing="8">
-                <Button Content="Login" Margin=" 0,12,0,0" x:Name="LoginButton" Command="{Binding LoginClicked}"/>
-                <Button Content="Register" Margin="0,12,0,0" x:Name="RegisterButton" Command="{Binding LoginClicked, Mode=TwoWay}" ClickMode="Press" CommandParameter="{Binding}"/>
+                <Button Content="Login" Margin=" 0,12,0,0" x:Name="LoginButton" Command="{Binding Path= LoginClicked, Mode=TwoWay}"/>
+                <Button Content="Register" Margin="0,12,0,0" x:Name="RegisterButton" Command="{Binding Path= RegisterClicked, Mode=TwoWay}"/>
             </StackPanel>
             <Button Content="Return" Click="BackButton_Click"/>
-            <TextBlock x:Name="ErrorTextBlock" Foreground="Red" Visibility="Collapsed"/>
+            <TextBlock x:Name="ErrorTextBlock" Foreground="Red" Text="{Binding ErrorMessage}" TextWrapping="Wrap" Visibility="Collapsed"/>
         </StackPanel>
     </Grid>
 </Page>

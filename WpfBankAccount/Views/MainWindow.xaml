@@ -1,0 +1,9 @@
+﻿<Window x:Class="WpfBankAccount.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:WpfBankAccount.ViewModels" 
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <ContentControl Content="{Binding CurrentView}" />
+    </Grid>
+</Window>

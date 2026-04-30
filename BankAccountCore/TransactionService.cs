@@ -1,9 +1,8 @@
-﻿using BankAccountLibrary.Models;
-using System;
+﻿using System;
 
-namespace BankAccountConsole
+namespace BankAccountCore
 {
-    internal class DepositService
+    public class TransactionService
     {
         public void Deposit(BankAccount account, decimal amount)
         {
@@ -16,7 +15,8 @@ namespace BankAccountConsole
             {
                 Amount = amount,
                 Date = DateTime.Now,
-                Type = TransactionType.Deposit
+                Type = TransactionType.Deposit,
+                BalanceAfter = account.Balance
             });
         }
         public void Withdrawal(BankAccount account, decimal amount)
@@ -34,7 +34,8 @@ namespace BankAccountConsole
             {
                 Amount = amount,
                 Date = DateTime.Now,
-                Type = TransactionType.Withdrawal
+                Type = TransactionType.Withdrawal,
+                BalanceAfter = account.Balance
             });
         }
     }
