@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfBankAccount", "WpfBankAc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankAccountCore", "BankAccountCore\BankAccountCore.csproj", "{1D5C542E-F3EE-4172-9382-494341C908DA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankApp.Api", "BankApp.Api\BankApp.Api.csproj", "{02374FAC-4F3D-438C-8780-202EDD48FD3C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{1D5C542E-F3EE-4172-9382-494341C908DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D5C542E-F3EE-4172-9382-494341C908DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D5C542E-F3EE-4172-9382-494341C908DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02374FAC-4F3D-438C-8780-202EDD48FD3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02374FAC-4F3D-438C-8780-202EDD48FD3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02374FAC-4F3D-438C-8780-202EDD48FD3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02374FAC-4F3D-438C-8780-202EDD48FD3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

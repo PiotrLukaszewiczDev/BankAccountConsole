@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace BankAccountCore
+﻿namespace BankAccountCore
 {
     public enum TransactionType
     {

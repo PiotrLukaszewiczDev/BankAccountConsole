@@ -8,6 +8,7 @@ namespace BankApp.Api.Data.Configurations
         public void Configure(EntityTypeBuilder<TransactionEntity> builder)
         {
             builder.Property(a => a.Amount).HasColumnType("decimal(18,2)");
+            builder.Property(b => b.BalanceAfter).HasColumnType("decimal(18,2)");
         }
     }
 }

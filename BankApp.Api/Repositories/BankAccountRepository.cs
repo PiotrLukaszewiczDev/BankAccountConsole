@@ -2,11 +2,7 @@
 using BankApp.Api.Exceptions;
 using BankApp.Api.Interfaces;
 using BankApp.Api.Models;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Client;
-using BankApp.Api.Exceptions;
 
 namespace BankApp.Api.Repositories
 {

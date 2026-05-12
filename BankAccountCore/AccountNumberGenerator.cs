@@ -10,7 +10,7 @@
         public string Generate()
         {
             int seed = _accountDataService.LoadAccountNumberSeed();
-            string accountNumber = "PL" + seed.ToString();
+            string accountNumber = "DE" + seed.ToString();
             _accountDataService.SaveAccountNumberSeed(seed + 1);
             return accountNumber;
         }

@@ -3,7 +3,6 @@ using BankApp.Api.Interfaces;
 using BankApp.Api.Mappings;
 using BankApp.Api.Repositories;
 using Microsoft.EntityFrameworkCore;
-using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +12,11 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectio
 
 builder.Services.AddScoped<IBankAccountRepository, BankAccountRepository>();
 builder.Services.AddAutoMapper(cfg => { }, typeof(BankAccountMappingProfile));
+
+builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
+
+builder.Services.AddScoped<ITransactionService, BankApp.Api.Services.TransactionService>();
+builder.Services.AddScoped<BankAccountCore.TransactionService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
