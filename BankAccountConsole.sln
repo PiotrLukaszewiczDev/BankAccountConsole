@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
 VisualStudioVersion = 18.2.11415.280
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankAccountConsole", "BankAccountConsole\BankAccountConsole.csproj", "{7D1E8634-33D5-43D6-ABF1-BDA094D94761}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfBankAccount", "WpfBankAccount\WpfBankAccount.csproj", "{D0DDC77B-BEB1-475A-964E-CBDD32F3DC1A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankAccountCore", "BankAccountCore\BankAccountCore.csproj", "{1D5C542E-F3EE-4172-9382-494341C908DA}"
@@ -17,11 +15,7 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7D1E8634-33D5-43D6-ABF1-BDA094D94761}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7D1E8634-33D5-43D6-ABF1-BDA094D94761}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7D1E8634-33D5-43D6-ABF1-BDA094D94761}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7D1E8634-33D5-43D6-ABF1-BDA094D94761}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D0DDC77B-BEB1-475A-964E-CBDD32F3DC1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+{D0DDC77B-BEB1-475A-964E-CBDD32F3DC1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D0DDC77B-BEB1-475A-964E-CBDD32F3DC1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0DDC77B-BEB1-475A-964E-CBDD32F3DC1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0DDC77B-BEB1-475A-964E-CBDD32F3DC1A}.Release|Any CPU.Build.0 = Release|Any CPU
