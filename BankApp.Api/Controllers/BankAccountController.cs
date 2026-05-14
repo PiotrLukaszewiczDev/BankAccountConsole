@@ -3,9 +3,7 @@ using BankApp.Api.DTOs;
 using BankApp.Api.Exceptions;
 using BankApp.Api.Interfaces;
 using BankApp.Api.Models;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Identity.Client;
 
 namespace BankApp.Api.Controllers
 {

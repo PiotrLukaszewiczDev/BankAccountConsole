@@ -20,13 +20,13 @@ namespace BankApp.Api.Repositories
         {
             _context.AccountEntities.Add(bankAccountEntity);
             await _context.SaveChangesAsync();
-            return(bankAccountEntity);
+            return (bankAccountEntity);
         }
 
         public async Task<bool> DeleteAsync(int id)
         {
             var existing = await _context.AccountEntities.FindAsync(id);
-            
+
             if (existing == null)
             {
                 return false;
@@ -51,11 +51,16 @@ namespace BankApp.Api.Repositories
             return await _context.AccountEntities.FindAsync(id);
         }
 
+        public async Task<BankAccountEntity?> GetByUsernameAsync(string username)
+        {
+            return await _context.AccountEntities.FirstOrDefaultAsync(u => u.UserName == username);
+        }
+
         public async Task<BankAccountEntity> UpdateAsync(BankAccountEntity bankAccountEntity)
         {
             var existing = await _context.AccountEntities.FindAsync(bankAccountEntity.Id);
 
-            if(existing == null)
+            if (existing == null)
             {
                 throw new AccountNotFoundException();
             }
@@ -63,7 +68,7 @@ namespace BankApp.Api.Repositories
             existing.OwnerName = bankAccountEntity.OwnerName;
             existing.UserName = bankAccountEntity.UserName;
             existing.Balance = bankAccountEntity.Balance;
-            existing.Password =  bankAccountEntity.Password;
+            existing.Password = bankAccountEntity.Password;
 
             await _context.SaveChangesAsync();
             return existing;

@@ -3,6 +3,7 @@ using BankAccountCore;
 using BankApp.Api.DTOs;
 using BankApp.Api.Interfaces;
 using BankApp.Api.Models;
+using Microsoft.AspNetCore.Http.Connections;
 
 namespace BankApp.Api.Services
 {
@@ -10,15 +11,12 @@ namespace BankApp.Api.Services
     {
         private readonly IBankAccountRepository _bankRepository;
         private readonly ITransactionRepository _transactionRepository;
-        private readonly BankAccountCore.TransactionService _accountCore;
         private readonly IMapper _mapper;
 
-        public TransactionService(IBankAccountRepository bankRepository, ITransactionRepository transactionRepository,
-            BankAccountCore.TransactionService accountCore, IMapper mapper)
+        public TransactionService(IBankAccountRepository bankRepository, ITransactionRepository transactionRepository, IMapper mapper)
         {
             _bankRepository = bankRepository;
             _transactionRepository = transactionRepository;
-            _accountCore = accountCore;
             _mapper = mapper;
         }
         public async Task<TransactionDto> DepositAsync(decimal amount, int bankAccountId)
@@ -29,17 +27,19 @@ namespace BankApp.Api.Services
                 throw new ArgumentException($"Account with Id {bankAccountId} don't exists");
             }
             
-            var domainAccount = _mapper.Map<BankAccount>(account);
-            _accountCore.Deposit(domainAccount, amount);
-
-            account.Balance = domainAccount.Balance;
+            account.Balance += amount;
             await _bankRepository.UpdateAsync(account);
 
-            var lastTransaction = domainAccount.Transactions.Last();
-            var transactionEntity = _mapper.Map<TransactionEntity>(lastTransaction);
-            transactionEntity.BankAccountId = bankAccountId;
-            await _transactionRepository.CreateAsync(transactionEntity);
+            var transactionEntity = new TransactionEntity
+            {
+                BankAccountId = bankAccountId,
+                Amount = amount,
+                BalanceAfter = account.Balance,
+                Date = DateTime.UtcNow,
+                Type = TransactionType.Deposit
+            };
 
+            await _transactionRepository.CreateAsync(transactionEntity);
             return _mapper.Map<TransactionDto>(transactionEntity);
         }
 
@@ -50,17 +50,24 @@ namespace BankApp.Api.Services
             {
                 throw new ArgumentException($"Account with Id {bankAccountId} don't exists"); 
             }
-            var domainAccount = _mapper.Map<BankAccount>(account);
-            _accountCore.Withdrawal(domainAccount, amount);
-
-            account.Balance = domainAccount.Balance;
+            
+            if(account.Balance < amount)
+            {
+                throw new InsufficientFundsException();
+            }
+            account.Balance -= amount;
             await _bankRepository.UpdateAsync(account);
 
-            var lastTransaction = domainAccount.Transactions.Last();
-            var transactionEntity = _mapper.Map<TransactionEntity>(lastTransaction);
-            transactionEntity.BankAccountId = bankAccountId;
-            await _transactionRepository.CreateAsync(transactionEntity);
+            var transactionEntity = new TransactionEntity
+            {
+                BankAccountId = bankAccountId,
+                Amount = amount,
+                BalanceAfter = account.Balance,
+                Date = DateTime.UtcNow,
+                Type = TransactionType.Withdrawal
+            };
 
+            await _transactionRepository.CreateAsync(transactionEntity);
             return _mapper.Map<TransactionDto>(transactionEntity);
         }
         
