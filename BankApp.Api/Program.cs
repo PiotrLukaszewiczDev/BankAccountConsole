@@ -20,7 +20,7 @@ builder.Services.AddScoped<ITransactionService, TransactionService>();
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 
-builder.Services.AddScoped<BankAccountCore.IAccountNumberGenerator, BankAccountCore.AccountNumberGenerator>();
+builder.Services.AddScoped<BankAccountCore.IAccountNumberGenerator, BankApp.Api.Services.AccountNumberGenerator>();
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
